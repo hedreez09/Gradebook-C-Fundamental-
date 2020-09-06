@@ -9,7 +9,7 @@ namespace GradeBook
       public Book(string name)
       {
          grades = new List<double>();  
-         this.name  = name;
+         Name  = name;
       }
       public Statistics GetStatistics()
       {
@@ -33,6 +33,6 @@ namespace GradeBook
             grades.Add(grade);
         }
          private List<double> grades; // this are instance member of this class 
-         private string name;
+         public string Name;
     }
 }
