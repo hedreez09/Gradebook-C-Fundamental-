@@ -10,6 +10,19 @@ namespace GradeBook.Tests
         }
 
         [Test]
+        public void test1()
+		{
+            //Arrange
+            var book = new Book("Hedreez book");
+
+             //Act
+            var result = book.AddGrade(100.0);
+
+            //Assert
+            Assert.AreEqual(100,result); 
+		}
+
+        [Test]
         public void BookCalculateAnAverageGrade()
         {   
             //Arrange
@@ -23,6 +36,7 @@ namespace GradeBook.Tests
             Assert.AreEqual(85.6, result.Average, 1);
             Assert.AreEqual(90.5, result.High, 1);
             Assert.AreEqual(77.3, result.Low, 1);
+            Assert.AreEqual('B', result.Letter);
         }
     }
 }
