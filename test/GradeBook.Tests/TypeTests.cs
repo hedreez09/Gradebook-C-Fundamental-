@@ -11,6 +11,39 @@ namespace GradeBook.Tests
         }
 
         [Test]
+        public void ValueTypeAlsoPassByValue()  
+		{
+            var x = GetInt();
+            setInt(out x);
+
+            Assert.AreEqual(42, x);
+		}
+
+		private void setInt(out int z)
+		{
+            z = 42;
+		}
+
+		private int GetInt()
+		{
+            return 3;
+		}
+
+		[Test]
+        public void CSharpCanPassByRef()
+        {
+            var book1 = GetBook("Figurine");
+            GetBooksetBook(out book1, "Figurine");
+
+            Assert.AreEqual("Figurine", book1.Name);
+        }
+
+        private void GetBooksetBook(out Book book, string name)
+        {
+            book = new Book(name);
+        }
+
+        [Test]
         public void CSharpIsPassByValue()
         {
             var book1 = GetBook("Figurine");
