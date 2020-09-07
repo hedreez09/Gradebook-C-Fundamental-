@@ -12,7 +12,7 @@ namespace GradeBook
          Name  = name;
       }
 
-        public void AddLetterGrade(char letter)
+        public void AddGrade(char letter)
 		{
 			switch (letter)
 			{
@@ -34,7 +34,7 @@ namespace GradeBook
                 
 		}
 
-        public double AddGrade(double grade)
+        public void AddGrade(double grade)
         {
             if (grade <= 100.0 && grade >= 0.0)
 			{
@@ -44,7 +44,7 @@ namespace GradeBook
 			{
                 throw new ArgumentException($"Invalid {nameof(grade)}");
 			}
-            return grade;
+            
         }
 
         public Statistics GetStatistics()
@@ -84,6 +84,24 @@ namespace GradeBook
       }
        
          private List<double> grades; // this are instance member of this class 
-         public string Name;
+         
+        public string Name
+		{
+            get
+			{
+                return name;
+			}
+			set
+			{
+                if (!String.IsNullOrEmpty(value) )
+				{
+                    name = value;
+                }
+
+
+                    
+			}
+		}
+        private string name;
     }
 }
