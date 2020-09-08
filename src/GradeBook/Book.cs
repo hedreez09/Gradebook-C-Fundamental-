@@ -4,6 +4,11 @@ using System;
 
 namespace GradeBook
 {
+
+    public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+
+
     public class Book
     {
       public Book(string name)
@@ -39,13 +44,16 @@ namespace GradeBook
             if (grade <= 100.0 && grade >= 0.0)
 			{
                 grades.Add(grade);
-            }
+				GradeAdded?.Invoke(this, new EventArgs()); //this is to check if the gradeAdded is not null to know if it was called
+			}
 			else
 			{
                 throw new ArgumentException($"Invalid {nameof(grade)}");
 			}
             
         }
+
+        public event GradeAddedDelegate GradeAdded;
 
         public Statistics GetStatistics()
       {
@@ -96,10 +104,7 @@ namespace GradeBook
                 if (!String.IsNullOrEmpty(value) )
 				{
                     name = value;
-                }
-
-
-                    
+                }     
 			}
 		}
         private string name;

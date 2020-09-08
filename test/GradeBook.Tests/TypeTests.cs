@@ -3,13 +3,34 @@ using System;
 
 namespace GradeBook.Tests
 {
+    public delegate string WriteLogDelegaate(string logMessage);
+
     public class TypeTests
     {
-        [SetUp]
-        public void Setup()
-        {
+        int count = 0;
+        [Test]
+        public void WriteLogDelegateCanPointToMethod()
+		{
+
+            WriteLogDelegaate log = ReturnMessage;
+            log += ReturnMessage;
+            log += IncrementCount;
+
+            var result = log("Hello!");
+            Assert.AreEqual(3, count);
+		}
+
+        string IncrementCount(string message)
+		{
+            count++;
+            return message.ToLower();
         }
 
+        string ReturnMessage(string message)
+		{
+            count++;
+            return message;
+		}
         [Test]
         public void ValueTypeAlsoPassByValue()  
 		{
